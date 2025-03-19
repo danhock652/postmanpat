@@ -1,4 +1,10 @@
 from termcolor import colored
+import random
+import colorama
+import time
+
+# Enable ANSI colours on Windows
+colorama.init()
 
 def correct(letter):
     return colored(letter, 'white', 'on_green', attrs=['bold'])
@@ -42,9 +48,7 @@ word_list = [
 
 
 # the secret is picked randomly from the word list
-secret = word_list[randint(0,len(word_list)-1)]
-
-# your code below
+secret = word_list[random.randint(0,len(word_list)-1)]
 
 # Create a function to ask for an input of a 5 letter word, prompt user again if the word is not 5 characters
 
@@ -94,7 +98,12 @@ while True:
     print(visual)
     # If there is the same correct statuses as number of letters then a congratulatory message will be printed and the code will break
     if hint.count('correct')==len(guess):
-        print("Well done!")
+        print("Well done, you guessed the secret word!")
+        print(f"Exiting in 5 seconds...")
+        time.sleep(1)
+        for second in range(5, 0, -1):
+            print(f"{second}...")
+            time.sleep(1)
         break
     
     # Prompt the user to enter another guess if needed
